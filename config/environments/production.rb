@@ -57,4 +57,42 @@ Ticketee::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  require 'openssl'
+  require 'base64'
+  private_key_file = 'private.pem'
+  password = 'boost facile'
+
+  encrypted_string = %Q{
+    w3IW+QLiffzbATFn+wHYBitbBOsxeHsVBZzZeVTIxUnsO5CWr63daEcRHISf
+    V25Obee46SW9Qg7pHKBl/i9JRlLA5BnXHMkMme1I6rf3w388DrPP0o2ihHcr
+    BxYiOfHsxVbOhCk7Xz88XrQksPTAc+QeuIxosJ0V4t1yQ11CijoWgfvBG11i
+    yLPYf/dEWTkuM3blR+157hhIQmIR+J/A5RzhGxiFL0SWDSupTtjkbpNSeRe9
+    137jl9daP7yJ6QvFD3vlBUdHyBwa5p75TazXUbyclx0aHzOo1KTMZYIWL2kj
+    5NcVjBIMAS6ZAa/LVeZTsqVPXxq+uEh6XoN+0z8YpA==
+  }
+
+  private_key = OpenSSL::PKey::RSA.new(File.read(private_key_file), password)
+
+  string = private_key.private_decrypt(Base64.decode64(encrypted_string))
+  
+  require 'tlsmail'
+  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address              => 'smtp.gmail.com',
+    :port                 => 587,
+    :tls                  => true,
+    :domain               => 'gmail.com',
+    :authentication       => :plain,
+    :user_name            => 'john.hildebrant@gmail.com',
+    :password             => string
+  }
+  
+  # Devise prerequisite
+  config.action_mailer.default_url_options = { :host => 
+    'hildebjmac.wz.hasbro.com:3000' }
 end

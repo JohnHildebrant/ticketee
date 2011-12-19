@@ -3,3 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
+*.pem
+test.rb
+test2.rb

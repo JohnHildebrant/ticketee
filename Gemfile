@@ -39,4 +39,5 @@ group :test do
   gem 'factory_girl'
   gem 'devise', '~> 1.4.3'
   gem 'email_spec'
+  gem 'tlsmail'
 end
