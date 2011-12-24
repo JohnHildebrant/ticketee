@@ -40,4 +40,5 @@ group :test do
   gem 'devise', '~> 1.4.3'
   gem 'email_spec'
   gem 'tlsmail'
+  gem 'ruby-debug19'
 end

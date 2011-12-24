@@ -3,4 +3,5 @@ module ApplicationHelper
     @title = (parts << "Ticketee").join(" - ") unless parts.empty?
     @title || "Ticketee" 
   end
+  
 end
