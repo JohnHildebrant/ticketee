@@ -38,6 +38,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'devise', '~> 1.4.3'
+  gem 'cancan'
   gem 'email_spec'
   gem 'tlsmail'
   gem 'ruby-debug19'
