@@ -39,6 +39,8 @@ group :test do
   gem 'factory_girl'
   gem 'devise', '~> 1.4.3'
   gem 'cancan'
+  
+  gem 'paperclip'
   gem 'email_spec'
   gem 'tlsmail'
   gem 'ruby-debug19'
