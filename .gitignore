@@ -6,3 +6,4 @@ tmp/
 *.pem
 test.rb
 test2.rb
+public/system
