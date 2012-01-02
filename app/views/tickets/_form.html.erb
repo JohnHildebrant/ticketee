@@ -8,7 +8,7 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>  
   </p>
-  <%= number = 0 %>
+  <% number = 0 %>
   <div id='files'>
     <%= f.fields_for :assets, :child_index => number  do |asset| %>
       <p>

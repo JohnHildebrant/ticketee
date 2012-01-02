@@ -22,6 +22,7 @@ Ticketee::Application.routes.draw do
     resources :users do
       resources :permissions
     end
+    resources :states
   end
   resources :files
   # The priority is based upon order of creation:
