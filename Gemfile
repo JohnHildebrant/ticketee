@@ -17,7 +17,12 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'devise', '~> 1.4.3'
+gem 'cancan'
+gem 'paperclip'
 gem 'jquery-rails'
+gem 'tlsmail'
+gem 'ruby-debug19'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -37,11 +42,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
-  gem 'devise', '~> 1.4.3'
-  gem 'cancan'
-  
-  gem 'paperclip'
   gem 'email_spec'
-  gem 'tlsmail'
-  gem 'ruby-debug19'
+  gem 'launchy'
 end
