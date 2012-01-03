@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 *.pem
 public/system
+/files/
+.DS_Store
