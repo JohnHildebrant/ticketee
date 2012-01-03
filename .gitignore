@@ -4,7 +4,4 @@ log/*.log
 tmp/
 .sass-cache/
 *.pem
-test.rb
-test2.rb
 public/system
-files
