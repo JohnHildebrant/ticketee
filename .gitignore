@@ -8,3 +8,5 @@ public/system
 public/assets
 /files/
 .DS_Store
+config/initializers/mail.rb
+features/gmail.feature

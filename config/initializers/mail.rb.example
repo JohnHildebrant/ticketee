@@ -1,0 +1,13 @@
+require 'tlsmail'
+
+Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => true,
+  :authentication       => :plain,
+  :user_name => "ticketee@gmail.com", 
+  :password => "2uo9icuiwX", 
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :tls => true
+}
