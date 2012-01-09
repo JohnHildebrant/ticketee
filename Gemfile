@@ -7,7 +7,6 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,7 +22,7 @@ gem 'paperclip'
 gem 'searcher'
 gem 'jquery-rails'
 gem 'tlsmail'
-gem 'ruby-debug19'
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,6 +32,10 @@ gem 'ruby-debug19'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'capistrano'
+end
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.5'
