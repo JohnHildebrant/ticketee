@@ -1,5 +1,7 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   
+  before_filter :authorize_admin!, :except => [:index, :show]
+  
   def index
     respond_with(Project.for(current_user))
   end
