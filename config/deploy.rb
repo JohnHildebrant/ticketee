@@ -44,5 +44,5 @@ end
 after "bundle:install", "symlink_database_yml"
 
 after 'deploy:update_code' do
-  run "cd #{release_path}; rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile"
+  load 'deploy/assets'
 end

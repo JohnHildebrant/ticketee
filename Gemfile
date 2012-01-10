@@ -12,7 +12,6 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'dynamic_form'
   gem 'uglifier'
-  gem 'therubyracer'
 end
 
 gem 'devise', '~> 1.4.3'
@@ -32,7 +31,7 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
-  gem 'capistrano', '2.7'
+  gem 'capistrano'
 end
 
 group :test, :development do
