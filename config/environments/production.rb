@@ -99,7 +99,7 @@ Ticketee::Application.configure do
     :enable_start_tls_auto  => false
   }
   
-  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.delivery_method = :smtp
   # Devise prerequisite
   config.action_mailer.default_url_options = { :host => 
     'hildebjmac.wz.hasbro.com:4567' }
