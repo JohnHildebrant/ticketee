@@ -12,6 +12,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'dynamic_form'
   gem 'uglifier'
+  gem 'therubyracer'
 end
 
 gem 'devise', '~> 1.4.3'
