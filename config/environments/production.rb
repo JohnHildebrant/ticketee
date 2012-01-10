@@ -92,7 +92,15 @@ Ticketee::Application.configure do
   #   :password             => string
   # }
   
+  ActionMailer::Base.smtp_settings = {
+    :address                => 'mailrelay01.wz.hasbro.com',
+    :port                   => 25,
+    :domain                 => 'wz.hasbro.com',
+    :enable_start_tls_auto  => false
+  }
+  
+  ActionMailer::Base.delivery_method :sendmail
   # Devise prerequisite
   config.action_mailer.default_url_options = { :host => 
-    'hildebjmac.wz.hasbro.com:3000' }
+    'hildebjmac.wz.hasbro.com:4567' }
 end
