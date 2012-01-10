@@ -12,7 +12,6 @@ group :assets do
   gem 'coffee-rails'
   gem 'dynamic_form'
   gem 'uglifier'
-  gem 'execjs'
 end
 
 gem 'devise', '~> 1.4.3'

@@ -226,7 +226,6 @@ DEPENDENCIES
   devise (~> 1.4.3)
   dynamic_form
   email_spec
-  execjs
   factory_girl
   gmail
   jquery-rails
