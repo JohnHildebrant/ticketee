@@ -1,5 +1,5 @@
 set :application, "ticketee"
-set :repository,  "git://github.com:Jth3000/ticketee.git"
+set :repository,  "git:github.com/Jth3000/ticketee.git"
 set :branch, "production"
 
 set :scm, :git
