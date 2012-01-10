@@ -4,7 +4,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
 set :rvm_ruby_string, '1.9.2'
 
-set :rvm_bin_path, "/usr/local/bin"
+set :rvm_bin_path, "/usr/local/rvm/bin"
 
 set :application, "ticketee"
 set :repository,  "git@github.com:Jth3000/ticketee.git"
