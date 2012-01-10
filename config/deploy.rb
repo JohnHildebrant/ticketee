@@ -17,7 +17,9 @@ set :user, "ticketeeapp.com"
 set :deploy_to, "/home/ticketeeapp.com/apps/#{application}"
 set :use_sudo, false
 set :keep_releases, 5
+
 load 'deploy/assets'
+
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "localhost"                          # Your HTTP server, Apache/etc
