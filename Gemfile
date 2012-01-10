@@ -31,7 +31,7 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '2.7'
 end
 
 group :test, :development do

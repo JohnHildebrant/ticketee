@@ -36,7 +36,7 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cancan (1.6.7)
-    capistrano (2.9.0)
+    capistrano (2.7.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -218,7 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
-  capistrano
+  capistrano (= 2.7)
   capybara
   coffee-rails (~> 3.1.0)
   cucumber-rails (~> 1.0.6)
