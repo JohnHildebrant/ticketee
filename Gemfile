@@ -21,7 +21,7 @@ gem 'cancan'
 gem 'paperclip'
 gem 'searcher'
 gem 'jquery-rails'
-gem 'tlsmail'
+#gem 'tlsmail'
 gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Use unicorn as the web server

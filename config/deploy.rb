@@ -1,13 +1,14 @@
-require 'bundler/capistrano'
-
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) 
 require 'rvm/capistrano'
 set :rvm_ruby_string, '1.9.2'
+set :rvm_type, :system
+set :rvm_bin_path, '/usr/local/rvm/bin'
 
-set :rvm_bin_path, "/usr/local/rvm/bin"
+require 'bundler/capistrano'
 
 set :application, "ticketee"
 set :repository,  "git@github.com:Jth3000/ticketee.git"
+
 set :branch, "production"
 
 set :scm, :git
@@ -21,7 +22,6 @@ set :keep_releases, 5
 role :web, "localhost"                          # Your HTTP server, Apache/etc
 role :app, "localhost"                          # This may be the same as your `Web` server
 role :db,  "localhost", :primary => true # This is where Rails migrations will run
-role :db,  "localhost"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
