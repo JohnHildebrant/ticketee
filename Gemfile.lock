@@ -127,6 +127,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.12.2)
     polyglot (0.3.3)
     rack (1.3.6)
     rack-cache (1.0.3)
@@ -230,6 +231,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   paperclip
+  pg
   rails (= 3.1.0)
   rspec-rails (~> 2.5)
   ruby-debug19

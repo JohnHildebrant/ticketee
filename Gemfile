@@ -5,8 +5,6 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,7 +19,6 @@ gem 'cancan'
 gem 'paperclip'
 gem 'searcher'
 gem 'jquery-rails'
-#gem 'tlsmail'
 gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Use unicorn as the web server
@@ -40,6 +37,7 @@ end
 group :test, :development do
   gem 'rspec-rails', '~> 2.5'
   gem 'gmail'
+  gem 'sqlite3'
 end
 
 group :test do
@@ -49,4 +47,8 @@ group :test do
   gem 'factory_girl'
   gem 'email_spec'
   gem 'launchy'
+end
+
+group :production do
+  gem 'pg'
 end
