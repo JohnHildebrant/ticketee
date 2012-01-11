@@ -10,7 +10,6 @@ gem 'rails', '3.1.0'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'dynamic_form'
   gem 'uglifier'
 end
 
@@ -20,6 +19,7 @@ gem 'paperclip'
 gem 'searcher'
 gem 'jquery-rails'
 gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'dynamic_form'
 
 # Use unicorn as the web server
 # gem 'unicorn'
