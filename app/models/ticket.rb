@@ -14,6 +14,7 @@ class Ticket < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :watchers, :join_table => "ticket_watchers",
                                      :class_name => "User"
+  before_create :set_ticket_state
   after_create :creator_watches_me
   
   def tag!(tags)
@@ -26,5 +27,9 @@ class Ticket < ActiveRecord::Base
   private
     def creator_watches_me
       self.watchers << user
+    end
+    
+    def set_ticket_state
+      self.state = State.all.find{|item| item.default}
     end
 end
