@@ -14,6 +14,7 @@ class Ticket < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :watchers, :join_table => "ticket_watchers",
                                      :class_name => "User"
+  before_save :maintain_ticket_state
   before_create :set_ticket_state
   after_create :project_viewers_watch_me
   
@@ -33,5 +34,9 @@ class Ticket < ActiveRecord::Base
     
     def set_ticket_state
       self.state = State.find_by_default(true)
+    end
+    
+    def maintain_ticket_state
+      self.state = State.find(self.state_id_was) unless self.state
     end
 end
