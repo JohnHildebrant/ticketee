@@ -32,6 +32,6 @@ class Ticket < ActiveRecord::Base
     end
     
     def set_ticket_state
-      self.state = State.all.find{|item| item.default}
+      self.state = State.find_by_default(true)
     end
 end
