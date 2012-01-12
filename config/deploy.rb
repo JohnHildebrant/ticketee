@@ -44,7 +44,7 @@ task :symlink_database_yml do
 end
 
 task :symlink_mail_rb do
-  run "rm #{release_path}/config/initializers/mail.rb"
+  run "rm -f #{release_path}/config/initializers/mail.rb"
   run "ln -sfn #{shared_path}/config/initializers/mail.rb #{release_path}/config/initializers/mail.rb"
 end
 
