@@ -15,7 +15,7 @@ class Ticket < ActiveRecord::Base
   has_and_belongs_to_many :watchers, :join_table => "ticket_watchers",
                                      :class_name => "User"
   before_create :set_ticket_state
-  after_create :creator_watches_me
+  after_create :project_viewers_watch_me
   
   def tag!(tags)
     tags = tags.split(" ").map do |tag|
@@ -25,8 +25,10 @@ class Ticket < ActiveRecord::Base
   end
   
   private
-    def creator_watches_me
-      self.watchers << user
+    def project_viewers_watch_me
+      permissions = Permission.all.find_all {
+        |item| item.thing_id == project.id && item.action == "view" }
+      self.watchers << User.all.find_all { permissions.map { |p| p.user_id } }
     end
     
     def set_ticket_state
