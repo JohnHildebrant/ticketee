@@ -43,4 +43,14 @@ task :symlink_database_yml do
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
 
-after "bundle:install", "symlink_database_yml"
+task :symlink_mail_rb do
+  run "rm #{release_path}/config/initializers/mail.rb"
+  run "ln -sfn #{shared_path}/config/initializers/mail.rb #{release_path}/config/initializers/mail.rb"
+end
+
+task :to_do_after_deploy do
+  symlink_database_yml
+  symlink_mail_rb
+end
+
+after "bundle:install", "to_do_after_deploy"
