@@ -96,7 +96,6 @@ Ticketee::Application.configure do
     :address                => 'mailrelay01.wz.hasbro.com',
     :port                   => 25,
     :domain                 => 'wz.hasbro.com',
-    :enable_start_tls_auto  => false
   }
   
   ActionMailer::Base.delivery_method = :smtp
