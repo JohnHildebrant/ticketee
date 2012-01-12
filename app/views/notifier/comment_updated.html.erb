@@ -4,8 +4,8 @@
 </p>
 
 <p>
-  <%= @comment.user %> has just updated the <%= @comment.ticket.title %> ticket
-  for <%= @comment.ticket.project.name %>. They wrote:
+  <%= @comment.user.email %> has just updated the <%= @comment.ticket.title %> ticket
+  for <%= @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 </p>
 <blockquote><%= @comment.text %></blockquote>
 
