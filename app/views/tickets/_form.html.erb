@@ -8,7 +8,11 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>  
   </p>
-  <%= render "tags/form" %>
+  
+  <% if can?(:tag, @project) || current_user.admin? %>
+    <%= render "tags/form" %>
+  <% end %>
+  
   <% number = 0 %>
   <div id='files'>
     <%= render :partial => "files/form",

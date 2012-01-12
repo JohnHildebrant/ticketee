@@ -13,7 +13,10 @@
           :selected => @ticket.state_id %>
     </p>
   <% end %>
-  <%= render "tags/form" %>
+  
+  <% if can?(:tag, @project) || current_user.admin? %>
+    <%= render "tags/form" %>
+  <% end %>
   
   <%= f.submit %>
 <% end %>
