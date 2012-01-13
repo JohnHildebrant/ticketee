@@ -37,6 +37,8 @@ class Ticket < ActiveRecord::Base
     end
     
     def maintain_ticket_state
-      self.state = State.find(self.state_id_was) unless self.state
+      if self.state_id_was
+        self.state = State.find(self.state_id_was) unless self.state
+      end
     end
 end
