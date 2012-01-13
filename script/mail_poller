@@ -3,6 +3,7 @@ require 'net/imap'
 require 'net/http'
 require 'rubygems'
 require 'logger'
+require 'yaml'
 
 config = YAML.load(File.read(File.join(File.dirname(__FILE__), '..', 'config', 'mail.yml')))
 log = Logger.new(STDOUT)
