@@ -9,8 +9,8 @@ config = YAML.load(File.read(File.join(File.dirname(__FILE__), '..', 'config', '
 log = Logger.new(STDOUT)
 
 begin
-  imap = Net::IMAP.new(config['host'], config['port'], true)
-  imap.login(config['username'], config['password'])
+  imap = Net::IMAP.new(config['host'], "imap2")
+  imap.authenticate('cram-md5', config['username'], config['password'])
 
   # select inbox as our mailbox to process
   imap.select('Inbox')
