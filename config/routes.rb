@@ -53,7 +53,7 @@ Ticketee::Application.routes.draw do
         get :make_default
       end
     end
-    map.resource :incoming, :only => [:create]
+    resources :incoming, only => [:create]
   end
   resources :files
   # The priority is based upon order of creation:
