@@ -10,3 +10,4 @@ public/assets
 .DS_Store
 config/initializers/mail.rb
 features/gmail.feature
+config/mail.yml
