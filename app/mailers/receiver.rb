@@ -1,4 +1,6 @@
 class Receiver < ActionMailer::Base
+  require 'nokogiri'
+  
   default from: "opsmailer@wizards.com"
   
   def self.parse(email)
@@ -11,8 +13,10 @@ class Receiver < ActionMailer::Base
         ticket = project.tickets.find(ticket_id)
         from_exp = /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/i
         from = from_exp.match(email.from[0])[0]
+        from = from_exp.match(email.from[0])[1] unless from
         user = User.find_by_email(from)
-        ticket.comments.create(:text => comment_text[1].strip, :user => user) if user
+        comment_text = Nokogiri::HTML(comment_text[1].strip).text
+        ticket.comments.create(:text => comment_text, :user => user) if user
       end
     end
   end
