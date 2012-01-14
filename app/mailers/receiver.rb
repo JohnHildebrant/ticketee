@@ -28,7 +28,9 @@ class Receiver < ActionMailer::Base
         comment_text = comment_text[1].strip
         comment_strip_exp = /^<!--.+-->(.+)$/m
         match_text = comment_strip_exp.match(comment_text)
+        log.info "Comment = " + comment_text[0] if comment_text
         log.info "Comment = " + comment_text[1] if comment_text
+        log.info "Match text = " + match_text[0] if match_text
         log.info "Match text = " + match_text[1] if match_text
         logfile.flush
         comment_text = match_text[1] if match_text
