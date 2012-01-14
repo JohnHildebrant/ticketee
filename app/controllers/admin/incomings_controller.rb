@@ -6,5 +6,6 @@ class Admin::IncomingsController < ApplicationController
     # Being invoked as a POST from the mail_poller
     message = Mail.new(params[:email])
     Receiver.parse(message)
+    render :nothing => true, :status => 200
   end                
 end
