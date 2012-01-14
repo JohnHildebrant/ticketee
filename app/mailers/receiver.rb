@@ -8,7 +8,7 @@ class Receiver < ActionMailer::Base
     logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
     log = Logger.new(logfile)
     reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer/m
-    body = email.body
+    body = email.body.decoded
     log.info "Email body = " + body
     body = Nokogiri::HTML(body).text
     log.info "Email body = " + body
