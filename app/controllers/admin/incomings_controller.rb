@@ -3,7 +3,7 @@ class Admin::IncomingsController < ApplicationController
   
   def create
     # Being invoked as a POST from the mail_poller
-    mail = Mail::Mail.parse(params[:email])
+    mail = Mail.parse(params[:email])
   
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
     comment_text = reply_separator.match(email.body.to_s)
