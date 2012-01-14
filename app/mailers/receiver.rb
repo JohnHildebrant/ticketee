@@ -10,7 +10,7 @@ class Receiver < ActionMailer::Base
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
         from_exp = /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/i
-        user = User.find_by_email(from_exp.match(email.from))
+        user = User.find_by_email(from_exp.match(email.from[0]))
         ticket.comments.create(:text => comment_text[1].strip,
                                :user => user)
       end
