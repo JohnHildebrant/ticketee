@@ -9,7 +9,7 @@ class Receiver < ActionMailer::Base
       if project_id.to_i > 0 && ticket_id.to_i > 0
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
-        user = User.find_by_email(email.envelope.from)
+        user = User.find_by_email(email.from.to_s)
         ticket.comments.create(:text => comment_text[1].strip,
                                :user => user)
       end
