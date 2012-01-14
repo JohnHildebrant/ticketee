@@ -17,6 +17,7 @@ class Receiver < ActionMailer::Base
         comment_strip_exp = /^&lt;!--.+--&gt;(.+)$/m
         match_text = comment_strip_exp.match(comment_text)
         #comment_text.bomb
+        require "ruby-debug/debugger"
         match_text[0].bomb
         ticket.comments.create(:text => comment_text, :user => user)
       end
