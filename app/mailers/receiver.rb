@@ -19,7 +19,8 @@ class Receiver < ActionMailer::Base
         match_text = comment_strip_exp.match(comment_text)
         logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'a')    
         log = Logger.new(logfile)
-        log.info comment_text
+        log.info "Comment = " + comment_text
+        log.info "Match text = " + match_text[1]
         match_text[1].bomb
         ticket.comments.create(:text => comment_text, :user => user)
       end
