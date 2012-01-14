@@ -20,9 +20,9 @@ class Receiver < ActionMailer::Base
         logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
         log = Logger.new(logfile)
         log.info "Comment = " + comment_text
-        log.info "Match text = " + match_text[1] if match_text[1]
+        log.info "Match text = " + match_text[1] if match_text
         logfile.flush
-        comment_text = match_text[1] if match_text[1]
+        comment_text = match_text[1] if match_text
         ticket.comments.create(:text => comment_text, :user => user)
       end
     end
