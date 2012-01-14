@@ -30,7 +30,6 @@ class Receiver < ActionMailer::Base
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
-        comment_text.bomb
         ticket.comments.create(:text => comment_text, :user => user)
       end
     end
