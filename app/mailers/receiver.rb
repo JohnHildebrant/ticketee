@@ -22,7 +22,7 @@ class Receiver < ActionMailer::Base
         log.info "Comment = " + comment_text
         log.info "Match text = " + match_text[1]
         log.flush
-        if match_text[1] comment_text = match_text[1]
+        comment_text = match_text[1] unless match_text[1]
         ticket.comments.create(:text => comment_text, :user => user)
       end
     end
