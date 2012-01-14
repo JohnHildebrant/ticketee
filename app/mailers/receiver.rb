@@ -11,7 +11,7 @@ class Receiver < ActionMailer::Base
       if project_id.to_i > 0 && ticket_id.to_i > 0
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
-        user = User.find_by_email(from.downcase!)
+        user = User.find_by_email(email.from.downcase!)
         comment_text = Nokogiri::HTML(comment_text[1].strip).text
         comment_strip_exp = /^<!--.+-->(.+)$/
         comment_text = comment_strip_exp.match(comment_text) ? 
