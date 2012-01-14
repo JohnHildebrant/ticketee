@@ -20,7 +20,6 @@ gem 'searcher'
 gem 'jquery-rails'
 gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'dynamic_form'
-gem 'tmail'
 
 # Use unicorn as the web server
 # gem 'unicorn'
