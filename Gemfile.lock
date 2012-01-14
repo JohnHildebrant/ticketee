@@ -231,7 +231,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   mail
-  nokogiri
   paperclip
   pg
   rails (= 3.1.0)
