@@ -8,9 +8,11 @@ class Receiver < ActionMailer::Base
     logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
     log = Logger.new(logfile)
     reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer/m
-    comment_text = reply_separator.match(email.body.decoded)
+    body = email.body
+    body = Nokogiri::HTML(body).text
+    comment_text = reply_separator.match(body)
     log.info "Comment = " + comment_text[1].strip
-    log.info "Email body = " + email.body.decoded
+    log.info "Email body = " + body
     comment_text.bomb
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
     comment_text = reply_separator.match(email.body.decoded) unless comment_text
