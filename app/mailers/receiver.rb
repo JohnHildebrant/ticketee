@@ -17,10 +17,10 @@ class Receiver < ActionMailer::Base
         comment_text = Nokogiri::HTML(comment_text).text
         comment_strip_exp = /^<!--.+-->(.+)$/m
         match_text = comment_strip_exp.match(comment_text)
-        logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'a')    
+        logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
         log = Logger.new(logfile)
         log.info "Comment = " + comment_text
-        log.info "Match text = " + match_text[1]
+        log.info "Match text = " + match_text[1] if match_text[1]
         logfile.flush
         comment_text = match_text[1] if match_text[1]
         ticket.comments.create(:text => comment_text, :user => user)
