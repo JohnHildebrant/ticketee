@@ -16,7 +16,7 @@ class Receiver < ActionMailer::Base
         comment_strip_exp = /^&lt;!--.+--&gt;(.+)$/m
         comment_text = comment_strip_exp.match(comment_text) ? 
           comment_strip_exp.match(comment_text)[0] : comment_text
-        ticket.comments.create(:text => comment_text, :user => user) if user
+        ticket.comments.create(:text => comment_text, :user => user)
       end
     end
   end
