@@ -53,7 +53,7 @@ Ticketee::Application.routes.draw do
         get :make_default
       end
     end
-    resources :incoming do
+    resources :incomings do
       member do
         post :create
       end
