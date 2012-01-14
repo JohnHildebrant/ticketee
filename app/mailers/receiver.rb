@@ -5,7 +5,7 @@ class Receiver < ActionMailer::Base
   default from: "opsmailer@wizards.com"
   
   def self.parse(email)
-    reply_separator = /(.*?)\s?From: WOTC OPSmailer /m
+    reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer /m
     comment_text = reply_separator.match(email.body.decoded)
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
     comment_text = reply_separator.match(email.body.decoded) unless comment_text
