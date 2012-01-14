@@ -21,6 +21,7 @@ class Receiver < ActionMailer::Base
         log = Logger.new(logfile)
         log.info "Comment = " + comment_text
         log.info "Match text = " + match_text[1]
+        logfile.flush
         comment_text = match_text[1] if match_text[1]
         ticket.comments.create(:text => comment_text, :user => user)
       end
