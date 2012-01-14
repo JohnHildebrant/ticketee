@@ -15,7 +15,7 @@ class Receiver < ActionMailer::Base
         user = User.find_by_email(email.from[0].downcase)
         comment_text = comment_text[1].strip
         comment_text = Nokogiri::HTML(comment_text).text
-        comment_strip_exp = /^&lt;!--.+--&gt;(.+)$/m
+        comment_strip_exp = /^<!--.+-->(.+)$/m
         match_text = comment_strip_exp.match(comment_text)
         logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'a')    
         log = Logger.new(logfile)
