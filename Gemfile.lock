@@ -230,6 +230,7 @@ DEPENDENCIES
   gmail
   jquery-rails
   launchy
+  mail
   paperclip
   pg
   rails (= 3.1.0)
