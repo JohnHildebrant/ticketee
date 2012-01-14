@@ -15,9 +15,9 @@ class Receiver < ActionMailer::Base
         comment_text = comment_text[1].strip
         comment_text = Nokogiri::HTML(comment_text).text
         comment_strip_exp = /^&lt;!--.+--&gt;(.+)$/m
-        match_text = comment_strip_exp.match(comment_text)[0]
-        comment_text.bomb
-        match_text.bomb
+        match_text = comment_strip_exp.match(comment_text)
+        #comment_text.bomb
+        match_text[0].bomb
         ticket.comments.create(:text => comment_text, :user => user)
       end
     end
