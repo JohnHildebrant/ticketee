@@ -1,10 +1,7 @@
 class Receiver < ActionMailer::Base
   require 'nokogiri'
-  require 'logger'
   
   default from: "opsmailer@wizards.com"
-  
-  log = Logger.new(STDOUT)
   
   def self.parse(email)
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
