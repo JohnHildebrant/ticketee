@@ -5,8 +5,13 @@ class Receiver < ActionMailer::Base
   default from: "opsmailer@wizards.com"
   
   def self.parse(email)
-    reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer /m
+    logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
+    log = Logger.new(logfile)
+    reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer/m
     comment_text = reply_separator.match(email.body.decoded)
+    log.info "Comment = " + comment_text[1].strip
+    log.info "Email body = " + email.body.decoded
+    comment_text.bomb
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
     comment_text = reply_separator.match(email.body.decoded) unless comment_text
     
@@ -20,8 +25,6 @@ class Receiver < ActionMailer::Base
         comment_text = Nokogiri::HTML(comment_text).text
         comment_strip_exp = /^<!--.+-->(.+)$/m
         match_text = comment_strip_exp.match(comment_text)
-        logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
-        log = Logger.new(logfile)
         log.info "Comment = " + comment_text
         log.info "Match text = " + match_text[1] if match_text
         logfile.flush
