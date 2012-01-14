@@ -12,11 +12,12 @@ class Receiver < ActionMailer::Base
     body = Nokogiri::HTML(body).text
     log.info "Email body = " + body
     comment_text = reply_separator.match(body)
+    log.info comment_text if comment_text
     if comment_text
       comment_text = comment_text[1].strip 
     else
       reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
-      comment_text = reply_separator.match(email.body.decoded)
+      comment_text = reply_separator.match(body)
     end
     if comment_text
       to, project_id, ticket_id = email.subject.split("@")[0].split("+")
@@ -31,6 +32,7 @@ class Receiver < ActionMailer::Base
         log.info "Match text = " + match_text[1] if match_text
         logfile.flush
         comment_text = match_text[1] if match_text
+        comment_text.bomb
         ticket.comments.create(:text => comment_text, :user => user)
       end
     end
