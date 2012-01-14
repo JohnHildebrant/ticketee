@@ -1,7 +1,10 @@
 class Receiver < ActionMailer::Base
   require 'nokogiri'
+  require 'logger'
   
   default from: "opsmailer@wizards.com"
+  
+  log = Logger.new(STDOUT)
   
   def self.parse(email)
     reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
@@ -13,7 +16,9 @@ class Receiver < ActionMailer::Base
         ticket = project.tickets.find(ticket_id)
         from_exp = /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/i
         from = from_exp.match(email.from[0])[0]
+        log.info from
         from = from_exp.match(email.from[1])[0] unless from
+        log.info from
         user = User.find_by_email(from)
         comment_text = Nokogiri::HTML(comment_text[1].strip).text
         comment_strip_exp = /^<!--.+-->(.+)$/
