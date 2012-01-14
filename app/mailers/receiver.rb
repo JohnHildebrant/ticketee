@@ -13,7 +13,7 @@ class Receiver < ActionMailer::Base
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
         comment_text = Nokogiri::HTML(comment_text[1].strip).text
-        comment_strip_exp = /^&lt;!--.+--&gt;(.+)$/m
+        comment_strip_exp = /^<!--.+-->;(.+)$/m
         comment_text = comment_strip_exp.match(comment_text) ? 
           comment_strip_exp.match(comment_text)[0] : comment_text
         ticket.comments.create(:text => comment_text, :user => user)
