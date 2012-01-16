@@ -28,8 +28,10 @@ class Ticket < ActiveRecord::Base
   private
     def project_viewers_watch_me
       permissions = Permission.all.find_all {
-        |item| item.thing_id == project.id && item.action == "view" }
-      self.watchers << User.all.find_all { permissions.map { |p| p.user_id } }
+        |item| item.thing_id == project.id && item.action == "view" && 
+               item.thing_type == "Project" }
+        users = permissions.map { |p| p.user_id }.compact
+      self.watchers << User.find(users) unless users.empty?
     end
     
     def set_ticket_state
