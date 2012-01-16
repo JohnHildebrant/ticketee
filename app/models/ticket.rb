@@ -30,7 +30,7 @@ class Ticket < ActiveRecord::Base
       permissions = Permission.all.find_all {
         |item| item.thing_id == project.id && item.action == "view" && 
                item.thing_type == "Project" }
-        users = permissions.map { |p| p.user_id }.compact
+      users = permissions.map { |p| p.user_id }.compact
       self.watchers << User.find(users) unless users.empty?
     end
     
