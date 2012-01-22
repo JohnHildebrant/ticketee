@@ -19,8 +19,10 @@ class Receiver < ActionMailer::Base
     body_match = body_strip_html_regex.match(body)
     body = body_match[1] if body_match
     log.info "Email body = " + body
-    message_id = email.message_id('')
-    x_mailer = email.header('x-mailer')
+    message_id = email.to_s["Message-ID"]
+    x_mailer = email.header["x-mailer"]
+    log.info "email.header = " email.header
+    log.info "email.to_s = " + email.to_s
     log.info "message_id = " + message_id
     log.info "x-mailer = " + x_mailer
     logfile.flush
