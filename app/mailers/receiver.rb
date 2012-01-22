@@ -9,7 +9,11 @@ class Receiver < ActionMailer::Base
   def self.parse(email)
     logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
     log = Logger.new(logfile)
-    body = email.body.decoded
+    if email.multipart?
+      body = email.parts[0].body.decoded
+    else
+      body = email.body.decoded
+    end
     body = Nokogiri::HTML(body).text
     body_strip_html_regex = /^<!--.+-->(.+)$/m
     body_match = body_strip_html_regex.match(body)
