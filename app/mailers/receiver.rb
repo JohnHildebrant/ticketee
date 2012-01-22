@@ -3,6 +3,8 @@ class Receiver < ActionMailer::Base
   require 'logger'
   
   default from: "opsmailer@wizards.com"
+  FROM_NAME = "WOTC OPSmailer"
+  FROM_ADDRESS = "opsmailer@wizards.com"
   
   def self.parse(email)
     logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')    
@@ -13,15 +15,21 @@ class Receiver < ActionMailer::Base
     body_match = body_strip_html_regex.match(body)
     body = body_match[1] if body_match
     log.info "Email body = " + body
-    reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer/m
-    comment_match = reply_separator.match(body)
-    if comment_match
-      comment_text = comment_match[1].strip 
-    else
-      reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
-      comment_match = reply_separator.match(body)
-      comment_text = comment_match[1].strip if comment_match
-    end
+    message_id = email.message_id('')
+    x_mailer = email.header('x-mailer')
+    log.info "message_id = " + message_id
+    log.info "x-mailer = " + x_mailer
+    logfile.flush
+    email.bomb
+    # reply_separator = /(.*?)\s?From:\s+WOTC OPSmailer/m
+    # comment_match = reply_separator.match(body)
+    # if comment_match
+    #   comment_text = comment_match[1].strip 
+    # else
+    #   reply_separator = /(.*?)\s?== ADD YOUR REPLY ABOVE THIS LINE ==/m
+    #   comment_match = reply_separator.match(body)
+    #   comment_text = comment_match[1].strip if comment_match
+    # end
     if comment_text
       log.info "Comment = " + comment_text
       logfile.flush
