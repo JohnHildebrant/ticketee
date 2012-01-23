@@ -7,7 +7,7 @@
   <%= @comment.user.email %> has just updated the <%= @comment.ticket.title %> ticket
   for <%= @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 </p>
-<blockquote><%= @comment.text %></blockquote>
+<blockquote><%= simple_format(@comment.text, {}, :sanitize => false) %></blockquote>
 
 <p>
   You can <%= link_to "view this ticket online here",
