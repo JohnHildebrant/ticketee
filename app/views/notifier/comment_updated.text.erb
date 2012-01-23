@@ -4,7 +4,7 @@ Hello!
 <%= @comment.user.email %> has just updated the <%= @comment.ticket.title %> ticket for <%= 
 @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 
-<%= simple_format(@comment.text.gsub("<", "&lt;").gsub(">", "&gt;"), {}, :sanitize => false) %>
+<%= @comment.text %>
 
 You can view this ticket online by going to:
 
