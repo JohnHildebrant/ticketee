@@ -53,10 +53,16 @@ task :symlink_mail_yml do
   run "ln -sfn #{shared_path}/config/mail.yml #{release_path}/config/mail.yml"
 end
 
+task :symlink_files do
+  run "rm -rf #{release_path}/files"
+  run "ln -sfn #{shared_path}/files #{release_path}/files"
+end
+
 task :to_do_after_deploy do
   symlink_database_yml
   symlink_mail_rb
   symlink_mail_yml
+  symlink_files
 end
 
 after "bundle:install", "to_do_after_deploy"
