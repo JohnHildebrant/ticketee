@@ -9,7 +9,7 @@
 </p>
 <blockquote>
   <%= simple_format(@comment.text.gsub("<", "&lt;").gsub(">", "&gt;").
-    gsub("  ", "&tab;").gsub(" ", "&nbsp;"), {}, :sanitize => false) %>
+    gsub("  ", "&nbsp;&nbsp;").gsub(" ", "&nbsp;"), {}, :sanitize => false) %>
 </blockquote>
 
 <p>
