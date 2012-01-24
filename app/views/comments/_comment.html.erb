@@ -1,5 +1,6 @@
 <%= div_for(comment) do %>
   <h4><%= comment.user %></h4>
   <%= state_for(comment) %>
-  <%= simple_format(comment.text.gsub("<", "&lt;").gsub(">", "&gt;"), {}, :sanitize => false) %>
+  <%= simple_format(comment.text.gsub("<", "&lt;").gsub(">", "&gt;").
+    gsub("  ", "&tab;").gsub(" ", "&nbsp;"), {}, :sanitize => false) %>
 <% end %>
