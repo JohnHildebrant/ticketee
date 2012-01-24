@@ -1,5 +1,7 @@
+<% coder = HTMLEntities.new %>
+
 <%= div_for(comment) do %>
   <h4><%= comment.user %></h4>
   <%= state_for(comment) %>
-  <%= simple_format(comment.text, {}, :sanitize => false) %>
+  <%= simple_format(coder.encode(comment.text, :named)) %>
 <% end %>

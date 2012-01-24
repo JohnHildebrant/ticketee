@@ -1,5 +1,6 @@
 class Receiver < ActionMailer::Base
   require 'nokogiri'
+  require 'htmlentities'
   require 'logger'
 
   default from: "opsmailer@wizards.com"
@@ -43,7 +44,8 @@ class Receiver < ActionMailer::Base
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
-        ticket.comments.create(:text => comment_text, :user => user)
+        coder = HTMLEntities.new
+        ticket.comments.create(:text => coder.encode(comment_text, :named), :user => user)
       end
     end
   end

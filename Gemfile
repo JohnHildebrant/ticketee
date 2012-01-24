@@ -22,6 +22,7 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'dynamic_form'
 gem 'mail'
 gem 'nokogiri'
+gem 'htmlentities'
 
 # Use unicorn as the web server
 # gem 'unicorn'

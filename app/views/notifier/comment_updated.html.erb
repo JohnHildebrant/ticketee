@@ -1,3 +1,4 @@
+<% coder = HTMLEntities.new %>
 == REPLIES TO THIS EMAIL WILL BE INSERTED AS A TICKET COMMENT AUTOMATICALLY ==
 <p>
   Hello!
@@ -8,7 +9,7 @@
   for <%= @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 </p>
 <blockquote>
-  <%= simple_format(@comment.text, {}, :sanitize => false) %>
+  <%= simple_format(coder.encode(@comment.text, :named)) %>
 </blockquote>
 
 <p>
