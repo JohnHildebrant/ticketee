@@ -9,7 +9,8 @@
   for <%= @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 </p>
 <blockquote>
-  <%= simple_format(coder.encode(@comment.text.gsub("\r\n", "\n"), :named)) %>
+  <%= simple_format(coder.encode(@comment.text.gsub("\r\n", "\n").
+        gsub(/\t/, '    '), :named).gsub(/ {2,}/) { '&nbsp;' * $&.length }) %>
 </blockquote>
 
 <p>

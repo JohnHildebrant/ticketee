@@ -3,5 +3,6 @@
 <%= div_for(comment) do %>
   <h4><%= comment.user %></h4>
   <%= state_for(comment) %>
-  <%= simple_format(coder.encode(comment.text.gsub("\r\n", "\n"), :named)) %>
+  <%= simple_format(coder.encode(comment.text.gsub("\r\n", "\n").
+        gsub(/\t/, '    '), :named).gsub(/ {2,}/) { '&nbsp;' * $&.length }) %>
 <% end %>
