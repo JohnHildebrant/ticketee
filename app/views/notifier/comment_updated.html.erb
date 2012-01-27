@@ -8,7 +8,7 @@
   for <%= @comment.ticket.project.name %>. <%= @comment.user.email %> wrote:
 </p>
 <blockquote>
-  <%= simple_format(@comment.text, {}, :sanitize => false) %>
+  <%= simple_format(@comment.text.gsub!(/\r\n?/, "\n"), {}, :sanitize => false) %>
 </blockquote>
 
 <p>
