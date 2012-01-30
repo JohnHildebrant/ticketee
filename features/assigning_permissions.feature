@@ -76,7 +76,7 @@ Feature: Assigning permissions
     Given I am signed in as "user@ticketee.com"
     When I follow "TextMate 2"
     And I follow "Shiny!"
-    When I fill in "Text" with "Opening this ticket."
+    When I fill in "comment_text" with "Opening this ticket."
     And I select "Open" from "State"
     And I press "Create Comment"
     Then I should see "Comment has been created."

@@ -19,33 +19,30 @@ Feature: Ticket Notifications
   Scenario: Ticket owner is automatically subscribed to a ticket
     When I follow "TextMate 2"
     And I follow "Release date"
-    And I fill in "Text" with "Is it out yet?"
+    And I fill in "comment_text" with "Is it out yet?"
     And I press "Create Comment"
-    
     Then "alice@ticketee.com" should receive an email
     When "alice@ticketee.com" opens the email
     Then they should see "updated the Release date ticket" in the email body
     And the email should contain 2 parts
     And there should be a part with content type "text/plain"
     And there should be a part with content type "text/html"
-    And they should see "[ticketee] TextMate 2 - Release date" in the email subject
+    And they should see "[opsmailer+1+1@wizards.com] TextMate 2 - Release date" in the email subject
     Then they follow "view this ticket online here" in the email
     Then I should see "Release date" within "#ticket h2"
     
   Scenario: Comment authors are automatically subscribed to a ticket
     When I follow "TextMate 2"
     And I follow "Release date"
-    And I fill in "Text" with "Is it out yet?"
+    And I fill in "comment_text" with "Is it out yet?"
     And I press "Create Comment"
     Then I should see "Comment has been created."
     When I follow "Sign out"
-    
     Given a clear email queue
-    
     Given I am signed in as "alice@ticketee.com"
     When I follow "TextMate 2"
     And I follow "Release date"
-    And I fill in "Text" with "Not yet!"
+    And I fill in "comment_text" with "Not yet!"
     And I press "Create Comment"
     Then I should see "Comment has been created."
     Then "bob@ticketee.com" should receive an email

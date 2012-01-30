@@ -7,7 +7,7 @@ class Receiver < ActionMailer::Base
   FROM_ADDRESS = "opsmailer@wizards.com"
 
   def self.parse(email)
-    logfile = File.open('/home/ticketeeapp.com/apps/ticketee/current/log/audit.log', 'w')
+    logfile = File.open("#{Rails.root}/log/audit.log", 'w')
     log = Logger.new(logfile)
     if email.multipart?
       body = email.parts[0].body.decoded
