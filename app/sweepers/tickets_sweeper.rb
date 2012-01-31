@@ -14,6 +14,6 @@ class TicketsSweeper < ActionController::Caching::Sweeper
   
   private
     def expire_fragments_for_project(project)
-      expire_fragment(/projects\/#{ticket.project.id}\/.*?/)
+      expire_fragment(/projects\/#{project.id}\/.*?/)
     end
 end
