@@ -43,6 +43,8 @@ class TicketsController < ApplicationController
   def show
     @comment = @ticket.comments.build
     @states = State.all
+    fresh_when :last_modified => @ticket.updated_at,
+               :etag => @ticket.to_s + current_user.id.to_s, :public => true
   end
   
   def destroy
