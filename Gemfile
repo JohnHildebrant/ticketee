@@ -24,6 +24,8 @@ gem 'dynamic_form'
 gem 'mail'
 gem 'nokogiri'
 gem 'htmlentities'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -55,4 +57,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'daemons'
 end
