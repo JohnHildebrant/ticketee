@@ -44,7 +44,6 @@ class Receiver < ActionMailer::Base
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
         ticket.comments.create(:text => comment_text, :user => user)
-        CommentsSweeper.expire_fragments_for_project(project)
       end
     end
   end
