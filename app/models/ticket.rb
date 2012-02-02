@@ -11,7 +11,7 @@ class Ticket < ActiveRecord::Base
   validates :description, :presence => true, :length => { :minimum => 10 }
   has_many :assets
   accepts_nested_attributes_for :assets
-  has_many :comments
+  has_many :comments, :dependent => :delete_all
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :watchers, :join_table => "ticket_watchers",
                                      :class_name => "User"

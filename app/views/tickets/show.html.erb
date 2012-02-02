@@ -36,11 +36,14 @@
   </ul>
 </div>
 <h3>Comments</h3>
-<div id='comments'>
-  <% if @ticket.comments.exists? %> <co id='ch10_191_1' />
-    <%= render @ticket.comments.select(&:persisted?).sort_by(&:id) %>
-  <% else %>
-    There are no comments for this ticket.
-  <% end %>
-</div>
+<% cache "projects/#{@project.id}/tickets/#{@ticket.id}" do %>
+  <div id='comments'>
+    <% if @ticket.comments.exists? %> <co id='ch10_191_1' />
+      <%= render @ticket.comments.select(&:persisted?).sort_by(&:id) %>
+    <% else %>
+      There are no comments for this ticket.
+    <% end %>
+  </div>
+<% end %>  
 <%= render "comments/form" %>
+

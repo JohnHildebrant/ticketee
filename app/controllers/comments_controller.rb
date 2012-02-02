@@ -3,6 +3,8 @@ require 'htmlentities'
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_ticket
+
+  cache_sweeper :comments_sweeper, :only => [:create]
   
   def create
     if !current_user.admin? && cannot?(:"change states", @ticket.project)
