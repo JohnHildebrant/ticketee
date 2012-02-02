@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
-  define_callback :after_invalidate
+  define_callbacks :after_invalidate
   searcher do
     label :tag, :from => :tags, :field => :name
     label :state, :from => :state, :field => :name
