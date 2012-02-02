@@ -20,7 +20,7 @@ class Ticket < ActiveRecord::Base
   after_create :project_viewers_watch_me
   
   def invalidate_cache
-    # let after_invalidate_cache fire in tickets_sweeper
+    self.save!
   end
   
   def tag!(tags)
