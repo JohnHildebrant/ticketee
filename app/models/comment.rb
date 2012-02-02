@@ -11,7 +11,6 @@ class Comment < ActiveRecord::Base
   validates :text, :presence => true
   
   private
-  
     def set_ticket_state
       self.ticket.state = self.state
       self.ticket.save!

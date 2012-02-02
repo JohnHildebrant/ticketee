@@ -1,5 +1,4 @@
 class Ticket < ActiveRecord::Base
-  define_callbacks :after_invalidate
   searcher do
     label :tag, :from => :tags, :field => :name
     label :state, :from => :state, :field => :name
@@ -21,7 +20,7 @@ class Ticket < ActiveRecord::Base
   after_create :project_viewers_watch_me
   
   def invalidate_cache
-    callback :after_invalidate
+    # let after_invalidate_cache fire in tickets_sweeper
   end
   
   def tag!(tags)
