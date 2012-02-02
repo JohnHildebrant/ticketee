@@ -12,6 +12,10 @@ class TicketsSweeper < ActionController::Caching::Sweeper
     expire_fragments_for_project(ticket.project)
   end
   
+  def after_invalidate(ticket)
+    expire_fragments_for_project(ticket.project)
+  end
+  
   private
     def expire_fragments_for_project(project)
       expire_fragment(/projects\/#{project.id}\/.*?/)

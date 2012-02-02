@@ -19,6 +19,10 @@ class Ticket < ActiveRecord::Base
   before_create :set_ticket_state
   after_create :project_viewers_watch_me
   
+  def invalidate_cache
+    callback :after_invalidate
+  end
+  
   def tag!(tags)
     tags = tags.split(" ").map do |tag|
       Tag.find_or_create_by_name(tag)
