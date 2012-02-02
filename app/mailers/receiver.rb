@@ -1,7 +1,6 @@
 class Receiver < ActionMailer::Base
   require 'nokogiri'
   require 'logger'
-  require 'net/http'
 
   default from: "opsmailer@wizards.com"
   FROM_NAME = "WOTC OPSmailer"
@@ -44,10 +43,7 @@ class Receiver < ActionMailer::Base
         project = Project.find(project_id)
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
-        #ticket.comments.create(:text => comment_text, :user => user)
-        uri = "http://localhost/tickets/#{ticket_id}/comments"
-        Net::HTTP.post_form(URI.parse(uri), { 'comment'=> 
-          { :text => comment_text, :user => user } })
+        ticket.comments.create(:text => comment_text, :user => user)
       end
     end
   end
