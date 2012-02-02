@@ -44,6 +44,7 @@ class Receiver < ActionMailer::Base
         ticket = project.tickets.find(ticket_id)
         user = User.find_by_email(email.from[0].downcase)
         ticket.comments.create(:text => comment_text, :user => user)
+        expire_fragment(/projects\/#{project.id}\/.*?/)
       end
     end
   end
