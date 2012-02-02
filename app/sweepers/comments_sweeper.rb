@@ -4,8 +4,7 @@ class CommentsSweeper < ActionController::Caching::Sweeper
     expire_fragments_for_project(comment.ticket.project)
   end
   
-  private
-    def expire_fragments_for_project(project)
-      expire_fragment(/projects\/#{project.id}\/.*?/)
-    end
+  def expire_fragments_for_project(project)
+    expire_fragment(/projects\/#{project.id}\/.*?/)
+  end
 end
