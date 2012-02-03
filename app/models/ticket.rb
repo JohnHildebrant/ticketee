@@ -4,7 +4,7 @@ class Ticket < ActiveRecord::Base
     label :state, :from => :state, :field => :name
   end
   paginates_per 50
-  belongs_to :project
+  belongs_to :project, :touch => true
   belongs_to :state
   belongs_to :user
   validates :title, :presence => true

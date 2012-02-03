@@ -25,6 +25,8 @@ class ProjectsController < ApplicationController
   
   def show
     @tickets = @project.tickets.page(params[:page])
+    fresh_when :last_modified => @project.updated_at,
+               :etag => @project.to_s + current_user.id.to_s, :public => true
   end
   
   def edit
