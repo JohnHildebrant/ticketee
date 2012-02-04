@@ -18,12 +18,24 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def after_sign_in_path_for(resource_or_scope)
-    root_url(:protocol => 'http')
+  def after_sign_in_path_for(resource)
+    sign_in_url = url_for(:action => 'new', :controller => 'sessions',
+      :only_path => false, :protocol => 'http')
+    if (request.referer == sign_in_url)
+      super
+    else
+      request.referer
+    end
   end
   
-  def after_sign_out_path_for(resource_or_scope)
-    root_url(:protocol => 'http')
+  def after_sign_out_path_for(resource)
+    sign_out_url = url_for(:action => 'delete', :controller => 'sessions',
+      :only_path => false, :protocol => 'http')
+    if (request.referer == sign_out_url)
+      super
+    else
+      request.referer
+    end
   end
   
   private
