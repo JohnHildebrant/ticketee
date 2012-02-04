@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   def ensure_proper_protocol
     if request.ssl? && !ssl_allowed_action?
-      redirect_to "http://" + request.host + request.fullpath
+      redirect_to "http://#{Configuration.hostname}" + request.fullpath
     end
   end
   

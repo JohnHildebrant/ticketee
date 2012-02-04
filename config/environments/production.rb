@@ -109,4 +109,9 @@ Ticketee::Application.configure do
   # Devise prerequisite
   config.action_mailer.default_url_options = { :host => 
     'blackops.wz.hasbro.com' }
+    
+  # set host name
+  config.after_initialize do
+    Configuration.hostname = 'blackops.wz.hasbro.com'
+  end
 end
