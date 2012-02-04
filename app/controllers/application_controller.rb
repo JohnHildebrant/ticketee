@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   protected
   
   def ssl_allowed_action?
-    (params[:controller] == 'users/sessions' && ['new', 'create'].
-      include?(params[:action])) || (params[:controller] == 'users/registrations' &&
+    (params[:controller] == 'sessions' && ['new', 'create'].
+      include?(params[:action])) || (params[:controller] == 'registrations' &&
       ['new', 'create', 'edit', 'update'].include?(params[:action])) ||
-      (params[:controller] == 'users/omniauth_callbacks')
+      (params[:controller] == 'omniauth_callbacks')
   end
   
   def ensure_proper_protocol
@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for(resource)
+    #print Rails.logger.info(params[:controller])
+    #print Rails.logger.info(params[:action])
+    #require 'ruby-debug/debugger'
     sign_in_url = url_for(:action => 'new', :controller => 'sessions',
       :only_path => false, :protocol => 'http')
     if (request.referer == sign_in_url)
@@ -29,7 +32,10 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_out_path_for(resource)
-    sign_out_url = url_for(:action => 'delete', :controller => 'sessions',
+    #print Rails.logger.info(params[:controller])
+    #print Rails.logger.info(params[:action])
+    #require 'ruby-debug/debugger'
+    sign_out_url = url_for(:action => 'destroy', :controller => 'sessions',
       :only_path => false, :protocol => 'http')
     if (request.referer == sign_out_url)
       super
