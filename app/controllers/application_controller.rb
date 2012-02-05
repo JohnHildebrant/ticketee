@@ -9,10 +9,14 @@ class ApplicationController < ActionController::Base
     (params[:controller] == 'sessions' && ['new', 'create'].
       include?(params[:action])) || (params[:controller] == 'registrations' &&
       ['new', 'create', 'edit', 'update'].include?(params[:action])) ||
-      (params[:controller] == 'omniauth_callbacks')
+      (params[:controller] == 'omniauth_callbacks') ||
+      (params[:controller] == 'devise/passwords' && 
+      ['edit'].include?(params[:action]))
   end
   
   def ensure_proper_protocol
+    #print Rails.logger.info(params[:controller])
+    #print Rails.logger.info(params[:action])
     hostname = request.host
     hostname = "blackops.wz.hasbro.com" if hostname == "blackops" 
     if hostname == "blackops.wz.hasbro.com"
