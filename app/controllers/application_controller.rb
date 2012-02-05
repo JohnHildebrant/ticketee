@@ -15,13 +15,12 @@ class ApplicationController < ActionController::Base
   def ensure_proper_protocol
     if request.ssl? && !ssl_allowed_action?
       redirect_to "http://#{Configuration.hostname}" + request.fullpath
+    elsif !request.ssl? && ssl_allowed_action?
+      redirect_to "https://#{Configuration.hostname}" + request.fullpath
     end
   end
   
   def after_sign_in_path_for(resource)
-    #print Rails.logger.info(params[:controller])
-    #print Rails.logger.info(params[:action])
-    #require 'ruby-debug/debugger'
     sign_in_url = url_for(:action => 'new', :controller => 'sessions',
       :only_path => false, :protocol => 'http')
     if (request.referer == sign_in_url)
@@ -32,16 +31,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_out_path_for(resource)
-    #print Rails.logger.info(params[:controller])
-    #print Rails.logger.info(params[:action])
-    #require 'ruby-debug/debugger'
-    sign_out_url = url_for(:action => 'destroy', :controller => 'sessions',
-      :only_path => false, :protocol => 'http')
-    if (request.referer == sign_out_url)
-      super
-    else
-      request.referer
-    end
+    root_url(:protocol => 'http')
   end
   
   private
