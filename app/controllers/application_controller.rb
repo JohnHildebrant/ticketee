@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   end
   
   def ensure_proper_protocol
-    #print Rails.logger.info(params[:controller])
-    #print Rails.logger.info(params[:action])
+    print Rails.logger.info(params[:controller])
+    print Rails.logger.info(params[:action])
     hostname = request.host
     hostname = "blackops.wz.hasbro.com" if hostname == "blackops" 
     if hostname == "blackops.wz.hasbro.com"
@@ -28,13 +28,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for(resource)
-    sign_in_url = url_for(:action => 'new', :controller => 'sessions',
-      :only_path => false, :protocol => 'http')
-    if (request.referer == sign_in_url)
-      super
-    else
-      request.referer
-    end
+    root_url(:protocol => 'http')
   end
   
   def after_sign_out_path_for(resource)
