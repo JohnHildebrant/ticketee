@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131181735) do
+ActiveRecord::Schema.define(:version => 20120205075200) do
 
   create_table "assets", :force => true do |t|
     t.string   "asset_file_name"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20120131181735) do
     t.integer  "state_id"
     t.integer  "previous_state_id"
   end
+
+  add_index "comments", ["ticket_id", "user_id"], :name => "index_comments_on_ticket_id_and_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -58,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20120131181735) do
     t.datetime "updated_at"
   end
 
+  add_index "permissions", ["thing_id", "thing_type"], :name => "index_permissions_on_thing_id_and_thing_type"
+  add_index "permissions", ["user_id"], :name => "index_permissions_on_user_id"
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -75,6 +80,8 @@ ActiveRecord::Schema.define(:version => 20120131181735) do
     t.string "name"
   end
 
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
+
   create_table "tags_tickets", :id => false, :force => true do |t|
     t.integer "tag_id"
     t.integer "ticket_id"
@@ -84,6 +91,9 @@ ActiveRecord::Schema.define(:version => 20120131181735) do
     t.integer "user_id"
     t.integer "ticket_id"
   end
+
+  add_index "ticket_watchers", ["ticket_id"], :name => "index_ticket_watchers_on_ticket_id"
+  add_index "ticket_watchers", ["user_id"], :name => "index_ticket_watchers_on_user_id"
 
   create_table "tickets", :force => true do |t|
     t.string   "title"
