@@ -106,6 +106,4 @@ Ticketee::Application.configure do
   config.action_mailer.default_url_options = { :host => 
     'blackops.wz.hasbro.com' }
     
-  config.to_prepare { Devise::SessionsController.force_ssl }
-  config.to_prepare { Devise::RegistrationsController.force_ssl }
 end
