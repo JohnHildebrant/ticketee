@@ -64,9 +64,11 @@ class TicketsController < ApplicationController
     if @ticket.watchers.exists?(current_user)
       @ticket.watchers -= [current_user]
       flash[:notice] = "You are no longer watching this ticket."
+      @ticket.touch
     else
       @ticket.watchers << current_user
       flash[:notice] = "You are now watching this ticket."
+      @ticket.touch
     end
     redirect_to project_ticket_path(@ticket.project, @ticket)
   end
