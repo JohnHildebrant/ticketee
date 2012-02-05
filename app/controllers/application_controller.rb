@@ -13,10 +13,14 @@ class ApplicationController < ActionController::Base
   end
   
   def ensure_proper_protocol
-    if request.ssl? && !ssl_allowed_action?
-      redirect_to "http://" + request.host + request.fullpath
-    elsif !request.ssl? && ssl_allowed_action?
-      redirect_to "https://" + request.host + request.fullpath
+    hostname = request.host
+    hostname = "blackops.wz.hasbro.com" if hostname == "blackops" 
+    if hostname == "blackops.wz.hasbro.com"
+      if request.ssl? && !ssl_allowed_action?
+        redirect_to "http://" + hostname + request.fullpath
+      elsif !request.ssl? && ssl_allowed_action?
+        redirect_to "https://" + hostname + request.fullpath
+      end
     end
   end
   
