@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   end
   
   def ensure_proper_protocol
-    print Rails.logger.info(params[:controller])
-    print Rails.logger.info(params[:action])
+    #print Rails.logger.info(params[:controller])
+    #print Rails.logger.info(params[:action])
     hostname = request.host
     hostname = "blackops.wz.hasbro.com" if hostname == "blackops" 
     if hostname == "blackops.wz.hasbro.com"

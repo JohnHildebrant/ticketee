@@ -17,14 +17,26 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% cache "projects/#{@project.id}/#{params[:page] || 1}" do %>
+<% if params[:search] %>
   <%= paginate @tickets %>
-  <ul id='tickets'>
-    <% @tickets.each do |ticket| %>
-      <li>
-        <%= render ticket.state if ticket.state %>
-        #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>
-      </li>
-    <% end %>
-  </ul>
+    <ul id='tickets'>
+      <% @tickets.each do |ticket| %>
+        <li>
+          <%= render ticket.state if ticket.state %>
+          #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>
+        </li>
+      <% end %>
+    </ul>
+<% else %>
+  <% cache "projects/#{@project.id}/#{params[:page] || 1}" do %>
+    <%= paginate @tickets %>
+    <ul id='tickets'>
+      <% @tickets.each do |ticket| %>
+        <li>
+          <%= render ticket.state if ticket.state %>
+          #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
