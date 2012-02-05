@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
       include?(params[:action])) || (params[:controller] == 'registrations' &&
       ['new', 'create', 'edit', 'update'].include?(params[:action])) ||
       (params[:controller] == 'omniauth_callbacks') ||
-      (params[:controller] == 'devise/passwords' && 
-      ['edit'].include?(params[:action]))
+      (params[:controller] == 'devise/passwords')
   end
   
   def ensure_proper_protocol
