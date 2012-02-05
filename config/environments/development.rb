@@ -35,9 +35,4 @@ Ticketee::Application.configure do
   
   # Devise prerequisite 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
-  # set host name
-  config.after_initialize do
-    Configuration.hostname = 'hildebjmac.wz.hasbro.com'
-  end
 end
